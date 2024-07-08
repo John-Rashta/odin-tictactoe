@@ -20,5 +20,15 @@ CREATE a player object
     WHEN get symbol function is called
         RETURN the symbol
 
-    
+
+CREATE game object
+    CREATE players
+    CREATE board
+    WHEN playerTurn is called 
+        CALL moveCount
+        RETURN whichever has less moves
+    WHEN playRound is called
+        CALL playerTURN
+        CALL makeMove
+        CHECK winning conditions
 
