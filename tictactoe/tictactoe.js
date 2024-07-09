@@ -158,3 +158,89 @@ function makeGame(playerone, playertwo) {
 }
 
 
+function displayController (game, round, newgame) {
+
+    game.round = round;
+    game.newgame = newgame;
+
+    const board = document.querySelector(".boardContainer");
+
+    for (let i = 0; i < 2; i++) {
+
+        for (let j = 0; j < 2; j++) {
+
+            const button = document.createElement("button");
+            button.dataset.row = i;
+            button.dataset.cell = j;
+            board.appendChild(button);
+        }
+    }
+
+    board.addEventListener("click", (event) => {
+
+        if (event.target.tagName === "BUTTON") {
+
+            row = event.target.dataset.row;
+            cell = event.target.dataset.cell;
+            game.round(row, cell);
+        }
+    })
+
+    const restartButton = document.createElement("button");
+    restartButton.textContent = "Restart";
+    restartButton.addEventListener("click", () => {
+
+        game.newgame();
+
+    })
+ 
+    function clearDisplay() {
+
+        const buttons = board.children;
+
+        for (child in buttons) {
+
+            child.textContent = "";
+        }
+
+        const resultBoard = document.querySelector(".result");
+        resultBoard.textContent = "";
+    }
+
+    function displayMove(row, cell, symbol) {
+
+        const button = document.querySelector(`button[data-row="${row}"][data-cell="${cell}"]`);
+        button.textContent = `${symbol}`;
+
+    }
+
+    function updateScore(playerOne, playerTwo) {
+
+        const playerOneDiv = document.querySelector(".playerOne");
+        const playerTwoDiv = document.querySelector(".playerTwo");
+
+        playerOneDiv.textContent = `${playerOne.name}:${playerOne.getScore()}`;
+        playerTwoDive.textContent = `${playerTwo.name}:${playerTwo.getScore()}`;
+
+    }
+
+    function displayResult(...winner) {
+
+        const resultBoard = document.querySelector(".result");
+
+        if (winner.length === 0) {
+
+            resultBoard.textContent = "Tie!";
+
+
+        }
+
+        resultBoard.textContent = `${winner[0].name} Wins!`;
+    }
+
+    return {displayResult, updateScore, displayMove, clearDisplay};
+
+
+}
+
+
