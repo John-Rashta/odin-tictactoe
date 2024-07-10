@@ -55,7 +55,7 @@ function makeGame(playerone, playertwo) {
     
         }
     
-    
+        /// Check how many moves the player has done
         function moveCount(symbol) {
     
             movesCount = gameboard.flat().filter((value) => {
@@ -82,7 +82,8 @@ function makeGame(playerone, playertwo) {
 
         game.round = round;
         game.newgame = newgame;
-    
+        
+        /// remove any previous divisions
         if (document.querySelector(".boardContainer")) {
     
             document.querySelector(".boardContainer").remove();
@@ -93,6 +94,7 @@ function makeGame(playerone, playertwo) {
             document.querySelector(".buttonContainer").remove();
         }
 
+        ///Create the divs necessary and append them
         const board = document.createElement("div");
         board.classList.toggle("boardContainer");
         const gameDiv = document.querySelector(".gameContainer");
@@ -101,10 +103,11 @@ function makeGame(playerone, playertwo) {
         gameDiv.appendChild(board);
         gameDiv.appendChild(buttonDiv);
 
+        ///Clear the result div of any text
         const result = document.querySelector(".result");
         result.textContent = "";
     
-    
+        ///Create all the buttons and append them
         for (let i = 0; i < 3; i++) {
     
             for (let j = 0; j < 3; j++) {
@@ -116,6 +119,7 @@ function makeGame(playerone, playertwo) {
             }
         }
     
+        ///add to the board the event for when a move is done
         board.addEventListener("click", buttonEvent);
     
         const restartButton = document.createElement("button");
@@ -167,8 +171,8 @@ function makeGame(playerone, playertwo) {
             const playerOneDiv = document.querySelector(".playerOne");
             const playerTwoDiv = document.querySelector(".playerTwo");
     
-            playerOneDiv.textContent = `${playerOne.name}:${playerOne.getScore()}`;
-            playerTwoDiv.textContent = `${playerTwo.name}:${playerTwo.getScore()}`;
+            playerOneDiv.textContent = `${playerOne.name}: ${playerOne.getScore()}`;
+            playerTwoDiv.textContent = `${playerTwo.name}: ${playerTwo.getScore()}`;
     
         }
     
@@ -232,6 +236,7 @@ function makeGame(playerone, playertwo) {
 
         currentBoard = gameBoard.getBoard();
 
+        ///check if all cells are occupied
         if (currentBoard.flat().length === 9) {
 
             gameEnd = true;
@@ -239,6 +244,7 @@ function makeGame(playerone, playertwo) {
 
         }
 
+        /// check for horizontal wins
         if ((activeSymbol === currentBoard[0][0] && activeSymbol === currentBoard[0][1] && activeSymbol === currentBoard[0][2]) ||
             (activeSymbol === currentBoard[1][0] && activeSymbol === currentBoard[1][1] && activeSymbol === currentBoard[1][2]) ||
             (activeSymbol === currentBoard[2][0] && activeSymbol === currentBoard[2][1] && activeSymbol === currentBoard[2][2])) {
@@ -246,13 +252,15 @@ function makeGame(playerone, playertwo) {
                 gameEnd = true;
                 gameOver(activePlayer);
             
+            ///check for vertical wins
             } else if ((activeSymbol === currentBoard[0][0] && activeSymbol === currentBoard[1][0] && activeSymbol === currentBoard[2][0]) ||
                 (activeSymbol === currentBoard[0][1] && activeSymbol === currentBoard[1][1] && activeSymbol === currentBoard[2][1]) ||
                 (activeSymbol === currentBoard[0][2] && activeSymbol === currentBoard[1][2] && activeSymbol === currentBoard[2][2])) {
 
                     gameEnd = true;
                     gameOver(activePlayer);
-
+                
+                ///check for diagonal wins
                 } else if ((activeSymbol === currentBoard[0][0] && activeSymbol === currentBoard[1][1] && activeSymbol === currentBoard[2][2]) ||
                     (activeSymbol === currentBoard[0][2] && activeSymbol === currentBoard[1][1] && activeSymbol === currentBoard[2][0])) {
 
@@ -281,7 +289,7 @@ function makeGame(playerone, playertwo) {
     return {playRound, newGame};
 }
 
-
+///setup the button that creates the game
 document.querySelector(".new").addEventListener("click", (event) => {
 
     event.preventDefault();

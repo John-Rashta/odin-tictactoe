@@ -218,3 +218,8 @@ label {
     font-size: min(3rem, 4vw);
     color: #f59e0b;
 }
+
+.result {
+
+    color: #9a3412;
+}
