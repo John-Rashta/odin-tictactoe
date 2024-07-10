@@ -10,7 +10,20 @@
 </head>
 <body>
     <div class="mainContainer">
-        <div class="formContainer"></div>
+        <div class="formContainer">
+            <form id="gameForm">
+                <div class="field">
+                    <label for="first_player">Player:</label>
+                    <input type="text" id="first_player" value="Player 1" name="first_player">
+                </div>
+                <div class="field">
+                    <label for="second_player">Player:</label>
+                    <input type="text" id="second_player" value="Player 2" name="second_player">
+                </div>
+                <button type="submit" class="new">New Game</button>
+            </form>
+        </div>
+        <div class="headTitle">TicTacToe</div>
         <div class="gameContainer">
             <div class="gameHeader">
                 <div class="score">
