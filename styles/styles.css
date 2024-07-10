@@ -223,3 +223,8 @@ label {
 
     color: #9a3412;
 }
+
+.boardContainer>button:active {
+
+    border-style: outset;
+}
