@@ -88,14 +88,18 @@ function makeGame(playerone, playertwo) {
             document.querySelector(".boardContainer").remove();
         }
     
-        if (document.querySelector(".gameContainer>button")) {
+        if (document.querySelector(".buttonContainer")) {
     
-            document.querySelector(".gameContainer>button").remove();
+            document.querySelector(".buttonContainer").remove();
         }
+
         const board = document.createElement("div");
         board.classList.toggle("boardContainer");
         const gameDiv = document.querySelector(".gameContainer");
+        const buttonDiv = document.createElement("div");
+        buttonDiv.classList.toggle("buttonContainer");
         gameDiv.appendChild(board);
+        gameDiv.appendChild(buttonDiv);
 
         const result = document.querySelector(".result");
         result.textContent = "";
@@ -116,6 +120,7 @@ function makeGame(playerone, playertwo) {
     
         const restartButton = document.createElement("button");
         restartButton.textContent = "Restart";
+        restartButton.classList.toggle("restartButton");
         restartButton.addEventListener("click", restartEvent);
     
         function restartEvent() {
@@ -133,7 +138,7 @@ function makeGame(playerone, playertwo) {
             }
         }
     
-        gameDiv.appendChild(restartButton);
+        buttonDiv.appendChild(restartButton);
      
         function clearDisplay() {
     
